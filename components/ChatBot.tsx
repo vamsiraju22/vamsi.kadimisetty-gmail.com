@@ -21,7 +21,7 @@ const ChatBot: React.FC = () => {
     const initChat = () => {
       const chatInstance = getChatInstance();
       setChat(chatInstance);
-      setMessages([{ role: 'model', content: "Hello! I can now access real-time market data. Ask me anything about current trends, news, or stock prices." }]);
+      setMessages([{ role: 'model', content: "Hello! I am Market Mentor AI. Ask me any question about the market, and I will provide a deep, multi-layered analysis connecting macroeconomic trends, sector dynamics, and company fundamentals to give you a comprehensive research perspective." }]);
     };
     initChat();
   }, []);
