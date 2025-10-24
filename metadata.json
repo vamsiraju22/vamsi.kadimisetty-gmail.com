@@ -1,0 +1,5 @@
+{
+  "name": "Market Mentor AI",
+  "description": "An AI-powered financial analysis tool to analyze stock market videos, generate in-depth company reports, and chat about market trends.",
+  "requestFramePermissions": []
+}

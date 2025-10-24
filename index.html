@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-g" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Market Mentor AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom scrollbar for webkit browsers */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #1f2937; /* gray-800 */
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #4b5563; /* gray-600 */
+        border-radius: 4px;
+        border: 2px solid #1f2937; /* gray-800 */
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #6b7280; /* gray-500 */
+      }
+      
+      /* Custom styles for rendered markdown reports */
+      .prose-custom {
+        color: #d1d5db; /* gray-300 */
+        line-height: 1.6;
+      }
+      .prose-custom h1, .prose-custom h2, .prose-custom h3, .prose-custom h4, .prose-custom h5, .prose-custom h6 {
+        color: #22d3ee; /* cyan-400 */
+        font-weight: 600;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+      }
+      .prose-custom h1 { font-size: 1.875rem; }
+      .prose-custom h2 { font-size: 1.5rem; }
+      .prose-custom h3 { font-size: 1.25rem; }
+      .prose-custom p {
+        margin-bottom: 1em;
+      }
+      .prose-custom strong {
+        color: #f9fafb; /* gray-50 */
+        font-weight: 600;
+      }
+      .prose-custom ul {
+        list-style-type: disc;
+        padding-left: 1.5em;
+        margin-bottom: 1em;
+      }
+      .prose-custom ol {
+        list-style-type: decimal;
+        padding-left: 1.5em;
+        margin-bottom: 1em;
+      }
+      .prose-custom li {
+        margin-bottom: 0.5em;
+      }
+      .prose-custom table {
+        width: 100%;
+        text-align: left;
+        border-collapse: collapse;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
+      }
+      .prose-custom thead {
+        background-color: #374151; /* gray-700 */
+        color: #67e8f9; /* cyan-300 */
+        font-size: 0.875rem;
+        text-transform: uppercase;
+      }
+      .prose-custom th, .prose-custom td {
+        padding: 0.75rem 1rem;
+        border: 1px solid #4b5563; /* gray-600 */
+      }
+      .prose-custom tbody tr {
+        background-color: #1f2937; /* gray-800 */
+        border-bottom: 1px solid #4b5563; /* gray-600 */
+      }
+      .prose-custom tbody tr:hover {
+        background-color: #374151; /* gray-700 */
+      }
+      .prose-custom hr {
+        border-color: #4b5563; /* gray-600 */
+        margin-top: 2em;
+        margin-bottom: 2em;
+      }
+      .prose-custom a {
+        color: #67e8f9; /* cyan-300 */
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+      .prose-custom a:hover {
+        color: #a5f3fc; /* cyan-200 */
+      }
+
+      /* Custom styles for rendered markdown in chat */
+      .prose-chat {
+          color: #d1d5db; /* gray-300 */
+          line-height: 1.6;
+          font-size: 0.875rem; /* text-sm */
+      }
+      .prose-chat h1, .prose-chat h2, .prose-chat h3, .prose-chat h4, .prose-chat h5, .prose-chat h6 {
+          color: #67e8f9; /* cyan-300 */
+          font-weight: 600;
+          margin-top: 0.75em;
+          margin-bottom: 0.25em;
+      }
+      .prose-chat h1 { font-size: 1.25em; }
+      .prose-chat h2 { font-size: 1.15em; }
+      .prose-chat h3 { font-size: 1.1em; }
+      .prose-chat p {
+          margin-bottom: 0.75em;
+      }
+      .prose-chat strong {
+          color: #f9fafb; /* gray-50 */
+          font-weight: 600;
+      }
+      .prose-chat ul, .prose-chat ol {
+          padding-left: 1.5em;
+          margin-bottom: 0.75em;
+      }
+      .prose-chat li {
+          margin-bottom: 0.25em;
+      }
+      .prose-chat table {
+          width: 100%;
+          text-align: left;
+          border-collapse: collapse;
+          margin-top: 1em;
+          margin-bottom: 1em;
+          font-size: 0.875rem;
+      }
+      .prose-chat thead {
+          background-color: #374151; /* gray-700 */
+          color: #67e8f9; /* cyan-300 */
+      }
+      .prose-chat th, .prose-chat td {
+          padding: 0.5rem 0.75rem;
+          border: 1px solid #4b5563; /* gray-600 */
+      }
+      .prose-chat tbody tr {
+          background-color: #1f2937; /* gray-800 */
+          border-bottom: 1px solid #4b5563; /* gray-600 */
+      }
+      .prose-chat tbody tr:hover {
+          background-color: #374151; /* gray-700 */
+      }
+      .prose-chat a {
+        color: #67e8f9; /* cyan-300 */
+        text-decoration: underline;
+      }
+      .prose-chat a:hover {
+        color: #a5f3fc; /* cyan-200 */
+      }
+      .prose-chat > *:last-child {
+          margin-bottom: 0;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0",
+    "react-markdown": "https://esm.sh/react-markdown@9",
+    "remark-gfm": "https://esm.sh/remark-gfm@4"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-900 text-gray-100 font-sans">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
